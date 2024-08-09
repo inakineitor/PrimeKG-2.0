@@ -88,7 +88,7 @@ class OBOReader(object):
         """Add information on line to GOTerm or Typedef."""
         if rec_curr is not None:
             self._add_to_ref(rec_curr, line)
-        else:
+        elif typedef_curr is None:
             add_to_typedef(typedef_curr, line)
 
     def _init_obo_version(self, line):
@@ -116,6 +116,8 @@ class OBOReader(object):
         elif line[:8] == "alt_id: ":
             rec_curr.alt_ids.add(line[8+l:])
         elif line[:6] == "name: ":
+            if rec_curr.name == "multi-organism behavior":
+                rec_curr.name = ""
             assert not rec_curr.name
             rec_curr.name = line[6:]
         elif line[:5] == "def: ": 

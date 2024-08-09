@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 
-df_ncbi2reactome = pd.read_csv('../data/reactome/NCBI2Reactome.txt',sep='\t', names=['ncbi_id', 'reactome_id', 'url','reactome_name','evidence_code', 'species'])
+df_ncbi2reactome = pd.read_csv('../data/reactome/NCBI2Reactome.txt', low_memory=False, sep='\t', names=['ncbi_id', 'reactome_id', 'url','reactome_name','evidence_code', 'species'])
 df_ncbi2reactome = df_ncbi2reactome.query('species=="Homo sapiens"')
 df_ncbi2reactome = df_ncbi2reactome.drop(['url','evidence_code','species'],axis=1)
 df_ncbi2reactome = df_ncbi2reactome.reset_index().drop('index',axis=1).drop_duplicates()

@@ -10,9 +10,16 @@ map_direct = df_mondo_xref.query('ontology=="UMLS"').get(['ontology_id','mondo_i
 
 df_umls_join = df_umls.get(['cui','source_cui', 'source_descriptor_dui', 'source', 'source_code']).drop_duplicates()
 
+df_umls_join['source_cui'] = df_umls_join['source_cui'].astype("object")
+df_umls_join['source_descriptor_dui'] = df_umls_join['source_descriptor_dui'].astype("object")
+df_umls_join['source_code'] = df_umls_join['source_code'].astype("object")
+
+
+
 map1 = pd.merge(df_umls_join, df_mondo_xref, 'inner', left_on='source_cui', right_on='ontology_id')
 map2 = pd.merge(df_umls_join, df_mondo_xref, 'inner', left_on='source_descriptor_dui', right_on='ontology_id')
 map3 = pd.merge(df_umls_join, df_mondo_xref, 'inner', left_on='source_code', right_on='ontology_id')
+
 
 map_all = pd.concat([map1, map2, map3]).drop_duplicates()
 

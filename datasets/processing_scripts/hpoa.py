@@ -7,13 +7,15 @@ with open('../data/hpo/phenotype.hpoa', 'r') as f:
     data = f.readlines()
 
 data_str = ''
+
 for line in data[4:]: 
     data_str += line 
+
     
 with open('../data/hpo/phenotype_formatted.hpoa', 'w') as f:
     f.write(data_str)
     
-df = pd.read_csv('../data/hpo/phenotype_formatted.hpoa', sep='\t')
+df = pd.read_csv('../data/hpo/phenotype_formatted.hpoa', sep='\t', low_memory=False)
 
 for x in df.itertuples(): 
     ont, ont_id = x.database_id.split(':')
