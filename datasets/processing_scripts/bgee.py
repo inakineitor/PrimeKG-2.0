@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv('../data/bgee/Homo_sapiens_expr_advanced.tsv', sep='\t')
+df = pd.read_csv('../data/bgee/Homo_sapiens_expr_advanced.tsv', sep='\t', low_memory=False)
 
 df = df[df.get('Anatomical entity ID').str.startswith('UBERON')]
 
