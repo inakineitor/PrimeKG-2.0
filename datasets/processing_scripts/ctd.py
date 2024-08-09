@@ -21,4 +21,4 @@ with open('../data/ctd/exposure_data.csv','w') as f:
             f.write(line+'\n')
 
 
-pd.read_csv('../data/ctd/exposure_data.csv', index_col=False).to_csv('../data/ctd/exposure_data.csv', index=False)
+pd.read_csv('../data/ctd/exposure_data.csv', index_col=False, low_memory=False).to_csv('../data/ctd/exposure_data.csv', index=False)
