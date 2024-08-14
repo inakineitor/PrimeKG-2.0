@@ -26,28 +26,18 @@ all_atc_codes = []
 
 for drug in drugs_xml:
     drugid = drug.find("drugbank-id").text
-    drugname = drug.find("name").text
-
-    if drug.find("description") is None:
-        continue
-
-    description = drug.find("description").text
-    # description = description.replace('\r\n\r\n', ' ')  # remove paragraph divisions
-
     if drug.find("atc-code") is not None:
         atcs = drug.find("atc-code")
-        atc_codes = []
-        for atc in atcs.findAll('level'):
-            atc_codes.append(atc.attrs['code'])
+        atc_codes = atc.attrs['code']
     else:
-        atc_codes = []
+        atc_codes = None
 
-all_drugids.append(drugid)
-all_atc_codes.append(atc_codes)
+    all_drugids.append(drugid)
+    all_atc_codes.append(atc_codes)
 
-raw_drugbank_df = pd.DataFrame({
+drugbank_atc_codes = pd.DataFrame({
     'drugbank_id':all_drugids,
     'atc_codes':all_atc_codes,
 })
 
-raw_drugbank_df.to_csv('../data/vocab/drugbank_atc_codes.csv')
+drugbank_atc_codes.to_csv('../data/vocab/drugbank_atc_codes.csv')
