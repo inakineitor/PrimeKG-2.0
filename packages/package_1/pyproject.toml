@@ -1,0 +1,16 @@
+[project]
+name = "package_1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Iñaki Arango", email = "inakiarango@college.harvard.edu" },
+    { name = "Ayush Noori", email = "anoori@college.harvard.edu" },
+    { name = "Vir Mehta", email = "vir.replace@this.email.com" },
+]
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

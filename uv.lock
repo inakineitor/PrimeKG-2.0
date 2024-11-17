@@ -1,0 +1,34 @@
+version = 1
+requires-python = ">=3.11"
+
+[manifest]
+members = [
+    "package-1",
+    "package-2",
+    "primekg",
+]
+
+[[package]]
+name = "package-1"
+version = "0.1.0"
+source = { editable = "packages/package_1" }
+
+[[package]]
+name = "package-2"
+version = "0.1.0"
+source = { editable = "packages/package_2" }
+
+[[package]]
+name = "primekg"
+version = "2.0.0"
+source = { editable = "." }
+dependencies = [
+    { name = "package-1" },
+    { name = "package-2" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "package-1", editable = "packages/package_1" },
+    { name = "package-2", editable = "packages/package_2" },
+]
